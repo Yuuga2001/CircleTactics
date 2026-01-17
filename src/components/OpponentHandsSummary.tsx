@@ -9,9 +9,8 @@ interface OpponentHandsSummaryProps {
 
 const OpponentHandsSummary: React.FC<OpponentHandsSummaryProps> = ({ hands, currentPlayer }) => {
   const getPlayerName = (player: Player) => {
-    const aiIndex = AI_PLAYERS.indexOf(player);
-    if (aiIndex !== -1) {
-      return `AI ${String.fromCharCode(65 + aiIndex)}`;
+    if (AI_PLAYERS.includes(player)) {
+      return player; // Return the color name directly, e.g., "BLUE"
     }
     return '';
   };

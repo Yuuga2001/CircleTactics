@@ -47,9 +47,8 @@ const GameComponent: React.FC = () => {
 
   const getPlayerName = (player: Player) => {
     if (player === USER_PLAYER) return 'You';
-    const aiIndex = AI_PLAYERS.indexOf(player);
-    if (aiIndex !== -1) {
-      return `AI ${String.fromCharCode(65 + aiIndex)}`; // AI A, AI B, AI C
+    if (AI_PLAYERS.includes(player)) {
+      return player; // Return the color name directly, e.g., "BLUE"
     }
     return 'Unknown';
   };
