@@ -1,4 +1,4 @@
-import { GameState, Action, SIZES, Player, BoardState, HandState, GameMode, PLAYERS } from '../types';
+import { GameState, Action, SIZES, Player, BoardState, HandState, PLAYERS } from '../types';
 import { checkWinner } from './winConditions';
 
 export function gameReducer(state: GameState, action: Action): GameState {

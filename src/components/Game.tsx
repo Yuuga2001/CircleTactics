@@ -12,7 +12,7 @@ const USER_PLAYER: Player = 'RED';
 
 const GameComponent: React.FC = () => {
   const [gameState, dispatch] = useReducer(gameReducer, createInitialGameState());
-  const { board, hands, currentPlayer, winner, selectedSize, winningLine } = gameState;
+  const { board, hands, currentPlayer, winner, selectedSize } = gameState;
 
   useEffect(() => {
     if (AI_PLAYERS.includes(currentPlayer) && !winner) {
@@ -78,7 +78,7 @@ const GameComponent: React.FC = () => {
       </div>
 
       <main className={styles.mainArea}>
-        <BoardComponent board={board} onCellClick={handleCellClick} winningLine={winningLine} />
+        <BoardComponent board={board} onCellClick={handleCellClick} />
         <div className={styles.gameStatus}>
           {!winner && (
             <h2 className={styles.turnText}>
