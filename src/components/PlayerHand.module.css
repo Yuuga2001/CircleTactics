@@ -107,47 +107,18 @@
 }
 
 /* --- Sizes for Player (Bottom) --- */
-.player .piecePreview.small { width: 25px; height: 25px; }
-.player .piecePreview.medium { width: 35px; height: 35px; }
-.player .piecePreview.large { width: 45px; height: 45px; }
-.player .pieceCount { font-size: 1rem; }
+.bottom .piecePreview.small { width: 25px; height: 25px; }
+.bottom .piecePreview.medium { width: 35px; height: 35px; }
+.bottom .piecePreview.large { width: 45px; height: 45px; }
+.bottom .pieceCount { font-size: 1rem; }
 
 /* --- Sizes for Opponent (Top) --- */
-.opponent {
+.top {
   padding: 0.5rem;
   max-width: 350px;
 }
-.opponent .playerTitle { font-size: 0.8rem; }
-.opponent .piecePreview.small { width: 15px; height: 15px; }
-.opponent .piecePreview.medium { width: 22px; height: 22px; }
-.opponent .piecePreview.large { width: 30px; height: 30px; }
-.opponent .pieceCount { font-size: 0.8rem; }
-
-/* --- Layout adjustments for rotated player hands (left/right) --- */
-.handContainer.left, .handContainer.right {
-  max-width: 250px; /* Adjust max-width for vertical hands */
-  .playerTitle {
-    transform: rotate(90deg); /* タイトルを元に戻す */
-    margin-bottom: 0;
-    margin-top: 1rem; /* スペースを確保 */
-  }
-  .pieces {
-    flex-direction: row; /* 横並びに変更 */
-    gap: 0.5rem; /* コマ間のスペース */
-  }
-  .pieceSelector {
-    flex-direction: row; /* コマとカウントを横並びに */
-    gap: 0.25rem;
-    padding: 0.25rem;
-  }
-  .piecePreview {
-    margin-bottom: 0;
-  }
-}
-
-/* Specific size adjustments for rotated hands */
-.handContainer.left .piecePreview.small, .handContainer.right .piecePreview.small { width: 20px; height: 20px; }
-.handContainer.left .piecePreview.medium, .handContainer.right .piecePreview.medium { width: 28px; height: 28px; }
-.handContainer.left .piecePreview.large, .handContainer.right .piecePreview.large { width: 35px; height: 35px; }
-.handContainer.left .pieceCount, .handContainer.right .pieceCount { font-size: 0.8rem; }
-
+.top .playerTitle { font-size: 0.8rem; }
+.top .piecePreview.small { width: 15px; height: 15px; }
+.top .piecePreview.medium { width: 22px; height: 22px; }
+.top .piecePreview.large { width: 30px; height: 30px; }
+.top .pieceCount { font-size: 0.8rem; }

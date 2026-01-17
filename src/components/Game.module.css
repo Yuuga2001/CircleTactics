@@ -1,34 +1,43 @@
 .gameContainer {
   display: grid;
-  grid-template-columns: auto 1fr auto; /* 左、中央、右のエリア */
-  grid-template-rows: auto 1fr auto; /* 上、中央、下のエリア */
-  justify-items: center; /* グリッドアイテムを中央揃え */
-  align-items: center; /* グリッドアイテムを中央揃え */
+  grid-template-columns: 1fr; /* Single column layout */
+  grid-template-rows: auto auto 1fr auto; /* header, opponents, main, user */
+  justify-items: center;
+  align-items: center;
   min-height: 100vh;
   padding: 1rem;
-  gap: 1rem; /* グリッド間のギャップ */
+  gap: 1rem;
   transition: filter 0.5s ease-in-out;
-  overflow: hidden; /* はみ出しを隠す */
+  overflow: hidden;
 }
 
 .mainArea {
-  grid-column: 2 / 3; /* 中央カラムに配置 */
-  grid-row: 2 / 3; /* 中央行に配置 */
+  grid-row: 3 / 4; /* Place in the third row */
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1.5rem;
+  width: 100%;
 }
 
 .header {
-  grid-column: 1 / -1; /* 全幅 */
-  grid-row: 1 / 2; /* 最上段 */
+  grid-row: 1 / 2; /* First row */
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
   width: 100%;
-  padding-bottom: 1rem; /* ヘッダーと中央コンテンツの間にスペース */
+}
+
+/* New container for opponent hands */
+.opponentHandsContainer {
+  grid-row: 2 / 3; /* Second row */
+  display: flex;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1rem;
+  width: 100%;
 }
 
 .title {
@@ -76,38 +85,13 @@
 
 .aiTurn {
   cursor: wait;
-  filter: brightness(0.7); /* AIターン時に全体を薄暗くする */
+  filter: brightness(0.7);
 }
 
-/* PlayerHandComponent の配置 */
-.playerHandLeft {
-  grid-column: 1 / 2;
-  grid-row: 2 / 3;
-  justify-self: end; /* 左端に寄せる */
-  padding-right: 1rem; /* ボードとの間にスペース */
-  transform: rotate(90deg); /* 縦に表示 */
-}
-
-.playerHandTop {
-  grid-column: 2 / 3;
-  grid-row: 1 / 2;
-  align-self: start; /* 上端に寄せる */
-  padding-bottom: 1rem; /* ボードとの間にスペース */
-}
-
-.playerHandRight {
-  grid-column: 3 / 4;
-  grid-row: 2 / 3;
-  justify-self: start; /* 右端に寄せる */
-  padding-left: 1rem; /* ボードとの間にスペース */
-  transform: rotate(-90deg); /* 縦に表示 */
-}
-
+/* Reposition bottom hand */
 .playerHandBottom {
-  grid-column: 1 / -1; /* 全幅 */
-  grid-row: 3 / 4; /* 最下段 */
-  align-self: end; /* 下端に寄せる */
-  padding-top: 1rem; /* ボードとの間にスペース */
+  grid-row: 4 / 5; /* Fourth row */
+  align-self: center;
 }
 
 .modalOverlay {

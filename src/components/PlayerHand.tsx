@@ -10,17 +10,17 @@ interface PlayerHandProps {
   isCurrentPlayer: boolean;
   isOpponent: boolean;
   playerName: string;
-  position?: 'top' | 'left' | 'right' | 'bottom'; // Add position prop
+  position: 'top' | 'bottom'; // Position is now more specific
 }
 
 const PlayerHandComponent: React.FC<PlayerHandProps> = ({ player, hand, selectedSize, onSelectSize, isCurrentPlayer, isOpponent, playerName, position }) => {
-  const containerClasses = `
-    ${styles.handContainer} 
-    ${isOpponent ? styles.opponent : styles.player}
-    ${styles[player.toLowerCase()]}
-    ${isCurrentPlayer && !isOpponent ? styles.active : ''}
-    ${position ? styles[position] : ''} // Apply position class
-  `;
+  const containerClasses = [
+    styles.handContainer,
+    isOpponent ? styles.opponent : styles.player,
+    styles[player.toLowerCase()],
+    isCurrentPlayer && !isOpponent ? styles.active : '',
+    styles[position], // Directly use 'top' or 'bottom' class
+  ].join(' ');
 
   return (
     <div className={containerClasses}>

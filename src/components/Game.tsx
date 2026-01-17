@@ -29,12 +29,12 @@ const GameComponent: React.FC = () => {
   }, [currentPlayer, winner, gameState]);
 
   const handleSelectSize = (size: PieceSize) => {
-    if (AI_PLAYERS.includes(currentPlayer)) return; // Disable user interaction during AI turn
+    if (AI_PLAYERS.includes(currentPlayer)) return;
     dispatch({ type: 'SELECT_SIZE', payload: size });
   };
 
   const handleCellClick = (row: number, col: number) => {
-    if (AI_PLAYERS.includes(currentPlayer)) return; // Disable user interaction during AI turn
+    if (AI_PLAYERS.includes(currentPlayer)) return;
     dispatch({ type: 'PLACE_PIECE', payload: { row, col } });
   };
   
@@ -44,40 +44,14 @@ const GameComponent: React.FC = () => {
 
   const isAITurn = AI_PLAYERS.includes(currentPlayer) && !winner;
 
-  // Player names for display
   const getPlayerName = (player: Player) => {
     if (player === USER_PLAYER) return 'You';
-    if (player === 'BLUE') return 'AI A';
-    if (player === 'YELLOW') return 'AI B';
-    if (player === 'GREEN') return 'AI C';
-    return 'Unknown'; // Should not happen
+    const aiIndex = AI_PLAYERS.indexOf(player);
+    if (aiIndex !== -1) {
+      return `AI ${String.fromCharCode(65 + aiIndex)}`; // AI A, AI B, AI C
+    }
+    return 'Unknown';
   };
-
-  const getUserPlayerHand = () => (
-    <PlayerHandComponent
-      player={USER_PLAYER}
-      hand={hands[USER_PLAYER]}
-      selectedSize={selectedSize}
-      onSelectSize={handleSelectSize}
-      isCurrentPlayer={currentPlayer === USER_PLAYER}
-      isOpponent={false}
-      playerName={getPlayerName(USER_PLAYER)}
-      position='bottom' // 明示的にpositionを渡す
-    />
-  );
-
-  const getAIPlayerHand = (aiPlayer: Player, position: 'top' | 'left' | 'right') => (
-    <PlayerHandComponent
-      player={aiPlayer}
-      hand={hands[aiPlayer]}
-      selectedSize={selectedSize} // AI doesn't have a selectedSize in the UI, but required by prop
-      onSelectSize={() => {}} // AI doesn't interact with hand UI
-      isCurrentPlayer={currentPlayer === aiPlayer}
-      isOpponent={true}
-      playerName={getPlayerName(aiPlayer)}
-      position={position} // Custom prop for positioning
-    />
-  );
 
   return (
     <div className={`${styles.gameContainer} ${isAITurn ? styles.aiTurn : ''}`}>
@@ -86,9 +60,21 @@ const GameComponent: React.FC = () => {
         <button onClick={handleRestart} className={styles.restartButton}>Play Again</button>
       </header>
       
-      {getAIPlayerHand('BLUE', 'left')} {/* AI A (Left) */}
-      {getAIPlayerHand('YELLOW', 'top')} {/* AI B (Top) */}
-      {getAIPlayerHand('GREEN', 'right')} {/* AI C (Right) */}
+      <div className={styles.opponentHandsContainer}>
+        {AI_PLAYERS.map(player => (
+          <PlayerHandComponent
+            key={player}
+            player={player}
+            hand={hands[player]}
+            selectedSize={null}
+            onSelectSize={() => {}}
+            isCurrentPlayer={currentPlayer === player}
+            isOpponent={true}
+            playerName={getPlayerName(player)}
+            position='top'
+          />
+        ))}
+      </div>
 
       <main className={styles.mainArea}>
         <BoardComponent board={board} onCellClick={handleCellClick} />
@@ -103,7 +89,16 @@ const GameComponent: React.FC = () => {
         </div>
       </main>
 
-      {getUserPlayerHand()} {/* User (Bottom) */}
+      <PlayerHandComponent
+        player={USER_PLAYER}
+        hand={hands[USER_PLAYER]}
+        selectedSize={selectedSize}
+        onSelectSize={handleSelectSize}
+        isCurrentPlayer={currentPlayer === USER_PLAYER}
+        isOpponent={false}
+        playerName={getPlayerName(USER_PLAYER)}
+        position='bottom'
+      />
 
       {winner && (
         <div className={styles.modalOverlay}>
