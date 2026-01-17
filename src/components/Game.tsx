@@ -4,7 +4,7 @@ import { gameReducer, createInitialGameState } from '../logic/gameReducer';
 import { findBestMove } from '../logic/ai';
 import BoardComponent from './Board';
 import PlayerHandComponent from './PlayerHand';
-import OpponentHandsSummary from './OpponentHandsSummary'; // Import the new component
+import OpponentHandsSummary from './OpponentHandsSummary';
 import styles from './Game.module.css';
 
 const AI_THINKING_TIME = 1000;
@@ -12,7 +12,7 @@ const USER_PLAYER: Player = 'RED';
 
 const GameComponent: React.FC = () => {
   const [gameState, dispatch] = useReducer(gameReducer, createInitialGameState());
-  const { board, hands, currentPlayer, winner, selectedSize } = gameState;
+  const { board, hands, currentPlayer, winner, selectedSize, winningLine } = gameState;
 
   useEffect(() => {
     if (AI_PLAYERS.includes(currentPlayer) && !winner) {
@@ -48,16 +48,29 @@ const GameComponent: React.FC = () => {
   const getPlayerName = (player: Player) => {
     if (player === USER_PLAYER) return 'You';
     if (AI_PLAYERS.includes(player)) {
-      return player; // Return the color name directly, e.g., "BLUE"
+      return player;
     }
     return 'Unknown';
   };
 
+  const gameContainerClasses = `${styles.gameContainer} ${winner ? styles[winner.toLowerCase()] : ''}`;
+
   return (
-    <div className={`${styles.gameContainer} ${isAITurn ? styles.aiTurn : ''}`}>
+    <div className={gameContainerClasses}>
+      {winner && [...Array(50)].map((_, i) => <div key={i} className={styles.confetti} style={{ left: `${Math.random() * 100}%`, animationDelay: `${Math.random() * -5}s` }}></div>)}
+
       <header className={styles.header}>
-        <h1 className={styles.title}>CircleTactics (4-Player AI)</h1>
-        <button onClick={handleRestart} className={styles.restartButton}>Play Again</button>
+        {winner ? (
+          <>
+            <h1 className={`${styles.title} ${styles.victoryTitle}`}>{`${getPlayerName(winner)} WINS!`}</h1>
+            <button onClick={handleRestart} className={styles.restartButton}>Play Again</button>
+          </>
+        ) : (
+          <>
+            <h1 className={styles.title}>CircleTactics</h1>
+            <button onClick={handleRestart} className={styles.restartButton}>New Game</button>
+          </>
+        )}
       </header>
       
       <div className={styles.opponentHandsContainer}>
@@ -65,11 +78,9 @@ const GameComponent: React.FC = () => {
       </div>
 
       <main className={styles.mainArea}>
-        <BoardComponent board={board} onCellClick={handleCellClick} />
+        <BoardComponent board={board} onCellClick={handleCellClick} winningLine={winningLine} />
         <div className={styles.gameStatus}>
-          {winner ? (
-            <h2 className={styles.winnerText}>{`${getPlayerName(winner)} WINS!`}</h2>
-          ) : (
+          {!winner && (
             <h2 className={styles.turnText}>
               {isAITurn ? `${getPlayerName(currentPlayer)} is thinking...` : `Turn: ${getPlayerName(currentPlayer)}`}
             </h2>
@@ -84,17 +95,9 @@ const GameComponent: React.FC = () => {
         onSelectSize={handleSelectSize}
         isCurrentPlayer={currentPlayer === USER_PLAYER}
       />
-
-      {winner && (
-        <div className={styles.modalOverlay}>
-          <div className={styles.winnerModal}>
-            <h2>{`${getPlayerName(winner)} Wins!`}</h2>
-            <button className={styles.resetButton} onClick={handleRestart}>Play Again</button>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
 
 export default GameComponent;
+

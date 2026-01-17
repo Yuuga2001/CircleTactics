@@ -1,18 +1,45 @@
+@keyframes confetti-fall {
+  0% {
+    opacity: 1;
+    transform: translateY(-10px) rotate(0deg);
+  }
+  100% {
+    opacity: 0.8;
+    transform: translateY(200vh) rotate(360deg); /* Fall across the whole screen */
+  }
+}
+
 .gameContainer {
   display: grid;
-  grid-template-columns: 1fr; /* Single column layout */
-  grid-template-rows: auto auto 1fr auto; /* header, opponents, main, user */
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto 1fr auto;
   justify-items: center;
   align-items: center;
   min-height: 100vh;
   padding: 1rem;
   gap: 1rem;
-  transition: filter 0.5s ease-in-out;
-  overflow: hidden;
+  transition: background-color 1s ease, background-image 1s ease;
+  overflow: hidden; /* Keep confetti contained initially */
+  position: relative; /* For confetti positioning */
 }
 
+/* Apply color overlay on victory */
+.gameContainer.red {
+  background-image: linear-gradient(rgba(183, 77, 77, 0.7), rgba(183, 77, 77, 0.7)), url('https://www.transparenttextures.com/patterns/wood-pattern.png');
+}
+.gameContainer.blue {
+  background-image: linear-gradient(rgba(90, 125, 154, 0.7), rgba(90, 125, 154, 0.7)), url('https://www.transparenttextures.com/patterns/wood-pattern.png');
+}
+.gameContainer.yellow {
+  background-image: linear-gradient(rgba(199, 160, 3, 0.7), rgba(199, 160, 3, 0.7)), url('https://www.transparenttextures.com/patterns/wood-pattern.png');
+}
+.gameContainer.green {
+  background-image: linear-gradient(rgba(106, 153, 78, 0.7), rgba(106, 153, 78, 0.7)), url('https://www.transparenttextures.com/patterns/wood-pattern.png');
+}
+
+
 .mainArea {
-  grid-row: 3 / 4; /* Place in the third row */
+  grid-row: 3 / 4;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -21,23 +48,24 @@
 }
 
 .header {
-  grid-row: 1 / 2; /* First row */
+  grid-row: 1 / 2;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
   width: 100%;
+  z-index: 10; /* Keep header above confetti */
 }
 
-/* New container for opponent hands */
 .opponentHandsContainer {
-  grid-row: 2 / 3; /* Second row */
+  grid-row: 2 / 3;
   display: flex;
-  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  flex-wrap: wrap;
   justify-content: center;
   align-items: flex-start;
   gap: 1rem;
   width: 100%;
+  z-index: 10;
 }
 
 .title {
@@ -47,6 +75,11 @@
   margin: 0;
   font-weight: 700;
   text-align: center;
+}
+
+.victoryTitle {
+  color: white;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
 }
 
 .restartButton {
@@ -88,54 +121,39 @@
   filter: brightness(0.7);
 }
 
-/* Reposition bottom hand */
 .playerHandBottom {
-  grid-row: 4 / 5; /* Fourth row */
+  grid-row: 4 / 5;
   align-self: center;
+  z-index: 10;
 }
 
-.modalOverlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
+.confetti {
+  position: absolute;
+  top: -20px;
+  width: 10px;
+  height: 20px;
+  background-color: #fff;
+  opacity: 0;
+  animation: confetti-fall 4s ease-out infinite;
 }
 
-.winnerModal {
-  background-color: var(--bg-color);
-  padding: clamp(2rem, 8vw, 3rem);
-  border-radius: 15px;
-  text-align: center;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-  border: 5px solid var(--board-frame-color);
-}
-
-.winnerModal h2 {
-  font-size: clamp(1.8rem, 7vw, 2.5rem);
-  margin: 0 0 1.5rem 0;
-  color: var(--board-frame-color);
-  font-weight: 700;
-}
-
-.resetButton {
-  padding: 10px 30px;
-  font-size: 1.2rem;
-  border-radius: 8px;
-  border: none;
-  background-color: var(--board-frame-color);
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.2s;
-  font-weight: 700;
-}
-
-.resetButton:hover {
-  background-color: var(--cell-color);
-  color: #333;
-}
+.confetti:nth-child(1) { left: 10%; animation-delay: 0s; background-color: #ffc107; }
+.confetti:nth-child(2) { left: 20%; animation-delay: -0.2s; background-color: #f44336; }
+.confetti:nth-child(3) { left: 30%; animation-delay: -0.5s; background-color: #4caf50; }
+.confetti:nth-child(4) { left: 40%; animation-delay: -0.8s; background-color: #2196f3; }
+.confetti:nth-child(5) { left: 50%; animation-delay: -1s; background-color: #e91e63; }
+.confetti:nth-child(6) { left: 60%; animation-delay: -1.2s; background-color: #ff9800; }
+.confetti:nth-child(7) { left: 70%; animation-delay: -1.5s; background-color: #9c27b0; }
+.confetti:nth-child(8) { left: 80%; animation-delay: -1.8s; background-color: #00bcd4; }
+.confetti:nth-child(9) { left: 90%; animation-delay: -2s; background-color: #8bc34a; }
+.confetti:nth-child(10){ left: 15%; animation-delay: -2.2s; background-color: #ffeb3b; }
+.confetti:nth-child(11){ left: 25%; animation-delay: -2.5s; background-color: #795548; }
+.confetti:nth-child(12){ left: 35%; animation-delay: -2.8s; background-color: #cddc39; }
+.confetti:nth-child(13){ left: 45%; animation-delay: -3s; background-color: #607d8b; }
+.confetti:nth-child(14){ left: 55%; animation-delay: -3.2s; background-color: #ff5722; }
+.confetti:nth-child(15){ left: 65%; animation-delay: -3.5s; background-color: #03a9f4; }
+.confetti:nth-child(16){ left: 75%; animation-delay: -3.8s; background-color: #4caf50; }
+.confetti:nth-child(17){ left: 85%; animation-delay: -4s; background-color: #f44336; }
+.confetti:nth-child(18){ left: 5%;  animation-delay: -4.2s; background-color: #ffc107; }
+.confetti:nth-child(19){ left: 95%; animation-delay: -4.5s; background-color: #2196f3; }
+.confetti:nth-child(20){ left: 50%; animation-delay: -4.8s; background-color: #e91e63; }
