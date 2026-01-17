@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&display=swap');
+
+:root {
+  --font-family-main: 'M PLUS Rounded 1c', sans-serif;
+  
+  --bg-color: #f3e9d8; /* Light beige wood */
+  --board-frame-color: #8d6e63; /* Darker wood */
+  --cell-color: #bcaaa4; /* Mid-tone wood */
+  --cell-hover-color: #c9b9b3;
+
+  --player-red: #c62828;
+  --player-red-dark: #8e0000;
+  --player-blue: #1565c0;
+  --player-blue-dark: #003c8f;
+  --player-yellow: #FFEB3B; /* 黄色 */
+  --player-yellow-dark: #FBC02D;
+  --player-green: #4CAF50; /* 緑 */
+  --player-green-dark: #2E7D32;
+
+  --highlight-color: #ffc107;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family-main);
+  background-color: var(--bg-color);
+  /* 木目調のテクスチャを追加 */
+  background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png'); /* フリーの木目調テクスチャ */
+  background-size: 200px 200px; /* テクスチャのサイズを調整 */
+  background-repeat: repeat; /* 繰り返して全体をカバー */
+  color: #333;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}

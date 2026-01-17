@@ -1,0 +1,63 @@
+@keyframes placePiece {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.piece {
+  border-radius: 50%;
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /* transform: translate(-50%, -50%); */ /* デフォルトの translate を削除 */
+  animation: placePiece 0.3s ease-out forwards;
+}
+
+.red {
+  background-color: var(--player-red);
+  border: 2px solid var(--player-red-dark);
+}
+
+.blue {
+  background-color: var(--player-blue);
+  border: 2px solid var(--player-blue-dark);
+}
+
+.yellow {
+  background-color: var(--player-yellow);
+  border: 2px solid var(--player-yellow-dark);
+}
+
+.green {
+  background-color: var(--player-green);
+  border: 2px solid var(--player-green-dark);
+}
+
+
+.small {
+  width: 33%;
+  height: 33%;
+  z-index: 3;
+  transform: translate(-50%, -80%); /* 少し上にずらす */
+}
+
+.medium {
+  width: 66%;
+  height: 66%;
+  z-index: 2;
+  transform: translate(-50%, -50%); /* 中央 */
+}
+
+.large {
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  transform: translate(-50%, -20%); /* 少し下にずらす */
+}
+

@@ -1,0 +1,153 @@
+.handContainer {
+  width: 100%;
+  max-width: 450px;
+  padding: 0.75rem;
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 2px solid transparent;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.handContainer.active {
+  transform: scale(1.03);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), 0 0 15px var(--highlight-color);
+}
+
+
+.handContainer.red {
+  border-color: var(--player-red-dark);
+}
+.handContainer.blue {
+  border-color: var(--player-blue-dark);
+}
+/* New player colors */
+.handContainer.yellow {
+  border-color: var(--player-yellow-dark);
+}
+.handContainer.green {
+  border-color: var(--player-green-dark);
+}
+
+.playerTitle {
+  margin: 0 0 0.5rem 0;
+  text-align: center;
+  font-weight: 700;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.handContainer.red .playerTitle { color: var(--player-red-dark); }
+.handContainer.blue .playerTitle { color: var(--player-blue-dark); }
+/* New player colors for title */
+.handContainer.yellow .playerTitle { color: var(--player-yellow-dark); }
+.handContainer.green .playerTitle { color: var(--player-green-dark); }
+
+
+.pieces {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.pieceSelector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Player (bottom) is interactive */
+.player .pieceSelector:not(.disabled):hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.player .pieceSelector.selected {
+  border-color: var(--highlight-color);
+  background-color: rgba(255, 193, 7, 0.2);
+  transform: translateY(-2px);
+}
+.pieceSelector.disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  filter: grayscale(50%);
+}
+
+.piecePreview {
+  border-radius: 50%;
+  margin-bottom: 0.5rem;
+}
+
+/* Preview colors */
+.piecePreview.red {
+  background-color: var(--player-red);
+  border: 2px solid var(--player-red-dark);
+}
+.piecePreview.blue {
+  background-color: var(--player-blue);
+  border: 2px solid var(--player-blue-dark);
+}
+/* New player colors for piece preview */
+.piecePreview.yellow {
+  background-color: var(--player-yellow);
+  border: 2px solid var(--player-yellow-dark);
+}
+.piecePreview.green {
+  background-color: var(--player-green);
+  border: 2px solid var(--player-green-dark);
+}
+
+.pieceCount {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #333;
+}
+
+/* --- Sizes for Player (Bottom) --- */
+.player .piecePreview.small { width: 25px; height: 25px; }
+.player .piecePreview.medium { width: 35px; height: 35px; }
+.player .piecePreview.large { width: 45px; height: 45px; }
+.player .pieceCount { font-size: 1rem; }
+
+/* --- Sizes for Opponent (Top) --- */
+.opponent {
+  padding: 0.5rem;
+  max-width: 350px;
+}
+.opponent .playerTitle { font-size: 0.8rem; }
+.opponent .piecePreview.small { width: 15px; height: 15px; }
+.opponent .piecePreview.medium { width: 22px; height: 22px; }
+.opponent .piecePreview.large { width: 30px; height: 30px; }
+.opponent .pieceCount { font-size: 0.8rem; }
+
+/* --- Layout adjustments for rotated player hands (left/right) --- */
+.handContainer.left, .handContainer.right {
+  max-width: 250px; /* Adjust max-width for vertical hands */
+  .playerTitle {
+    transform: rotate(90deg); /* タイトルを元に戻す */
+    margin-bottom: 0;
+    margin-top: 1rem; /* スペースを確保 */
+  }
+  .pieces {
+    flex-direction: row; /* 横並びに変更 */
+    gap: 0.5rem; /* コマ間のスペース */
+  }
+  .pieceSelector {
+    flex-direction: row; /* コマとカウントを横並びに */
+    gap: 0.25rem;
+    padding: 0.25rem;
+  }
+  .piecePreview {
+    margin-bottom: 0;
+  }
+}
+
+/* Specific size adjustments for rotated hands */
+.handContainer.left .piecePreview.small, .handContainer.right .piecePreview.small { width: 20px; height: 20px; }
+.handContainer.left .piecePreview.medium, .handContainer.right .piecePreview.medium { width: 28px; height: 28px; }
+.handContainer.left .piecePreview.large, .handContainer.right .piecePreview.large { width: 35px; height: 35px; }
+.handContainer.left .pieceCount, .handContainer.right .pieceCount { font-size: 0.8rem; }
+
