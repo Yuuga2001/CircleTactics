@@ -32,10 +32,7 @@ const OpponentHandsSummary: React.FC<OpponentHandsSummaryProps> = ({ hands, curr
           </div>
           {SIZES.map(size => (
             <div key={size} className={styles.pieceCell}>
-              <div className={`${styles.pieceIcon} ${styles[player.toLowerCase()]}`}>
-                <div className={`${styles.pieceIconInner} ${styles[size.toLowerCase()]}`}></div>
-              </div>
-              <span className={styles.pieceCount}>x{hands[player][size]}</span>
+              <span className={styles.pieceCount}>{hands[player][size]}</span>
             </div>
           ))}
         </div>

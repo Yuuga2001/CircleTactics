@@ -56,26 +56,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.3rem;
 }
-
-.pieceIcon {
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.pieceIconInner {
-   border-radius: 50%;
-}
-
-.pieceIconInner.small { width: 40%; height: 40%; background: white; }
-.pieceIconInner.medium { width: 65%; height: 65%; background: white; }
-.pieceIconInner.large { width: 90%; height: 90%; background: white; }
-
 
 .pieceCount {
   font-family: monospace;
