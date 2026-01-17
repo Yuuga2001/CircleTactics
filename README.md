@@ -10,6 +10,12 @@
 </p>
 
 <p align="center">
+  <a href="https://circle-tactics.riverapp.jp/">
+    <img src="https://img.shields.io/badge/🎮_今すぐプレイ-Play_Now-FF6B6B?style=for-the-badge&logoColor=white" alt="Play Now" />
+  </a>
+</p>
+
+<p align="center">
   <a href="#features">機能</a> •
   <a href="#rules">ルール</a> •
   <a href="#tech-stack">技術スタック</a> •
