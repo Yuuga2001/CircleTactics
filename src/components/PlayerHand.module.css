@@ -1,8 +1,8 @@
 .handContainer {
   width: 100%;
   max-width: 450px;
-  padding: 0.75rem;
-  border-radius: 12px;
+  padding: 0.4rem 0.75rem;
+  border-radius: 10px;
   background-color: rgba(255, 255, 255, 0.6);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   border: 2px solid transparent;
@@ -20,10 +20,10 @@
 .handContainer.green { border-color: var(--player-green-dark); }
 
 .playerTitle {
-  margin: 0 0 0.5rem 0;
+  margin: 0;
   text-align: center;
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
@@ -40,10 +40,11 @@
 
 .pieceSelector {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
+  gap: 0.4rem;
   cursor: pointer;
-  padding: 0.5rem;
+  padding: 0.3rem 0.5rem;
   border-radius: 8px;
   border: 2px solid transparent;
   transition: all 0.2s ease-in-out;
@@ -65,14 +66,14 @@
 
 .piecePreview {
   border-radius: 50%;
-  margin-bottom: 0.5rem;
-  width: 35px;
-  height: 35px;
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
 }
 
-.piecePreview.small { width: 25px; height: 25px; }
-.piecePreview.medium { width: 35px; height: 35px; }
-.piecePreview.large { width: 45px; height: 45px; }
+.piecePreview.small { width: 20px; height: 20px; }
+.piecePreview.medium { width: 28px; height: 28px; }
+.piecePreview.large { width: 36px; height: 36px; }
 
 
 .piecePreview.red {
@@ -93,7 +94,7 @@
 }
 
 .pieceCount {
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 700;
   color: #333;
 }

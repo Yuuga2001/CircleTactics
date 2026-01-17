@@ -16,8 +16,9 @@
   justify-items: center;
   align-items: center;
   min-height: 100vh;
-  padding: 1rem;
-  gap: 1rem;
+  min-height: 100dvh;
+  padding: 0.5rem;
+  gap: 0.4rem;
   transition: background-color 1s ease, background-image 1s ease;
   overflow: hidden; /* Keep confetti contained initially */
   position: relative; /* For confetti positioning */
@@ -43,15 +44,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
+  gap: 0.3rem;
   width: 100%;
 }
 
 .header {
   grid-row: 1 / 2;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
+  justify-content: center;
   gap: 1rem;
   width: 100%;
   z-index: 10; /* Keep header above confetti */
@@ -63,13 +65,13 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: flex-start;
-  gap: 1rem;
+  gap: 0.5rem;
   width: 100%;
   z-index: 10;
 }
 
 .title {
-  font-size: clamp(2rem, 10vw, 3rem);
+  font-size: clamp(1.5rem, 8vw, 2rem);
   color: var(--board-frame-color);
   text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
   margin: 0;
@@ -85,9 +87,9 @@
 .restartButton {
   font-family: var(--font-family-main);
   font-weight: 700;
-  font-size: 1rem;
-  padding: 0.6rem 1.2rem;
-  border-radius: 20px;
+  font-size: 0.85rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 16px;
   border: 2px solid var(--board-frame-color);
   background-color: #fff;
   color: var(--board-frame-color);
@@ -104,14 +106,14 @@
 }
 
 .gameStatus {
-  min-height: 2.5rem;
+  min-height: 1.8rem;
   display: flex;
   align-items: center;
   text-align: center;
 }
 
 .turnText, .winnerText {
-  font-size: clamp(1.2rem, 5vw, 1.5rem);
+  font-size: clamp(1rem, 4vw, 1.2rem);
   color: var(--board-frame-color);
   font-weight: 700;
 }
