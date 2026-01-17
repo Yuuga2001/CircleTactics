@@ -8,23 +8,18 @@ interface PlayerHandProps {
   selectedSize: PieceSize | null;
   onSelectSize: (size: PieceSize) => void;
   isCurrentPlayer: boolean;
-  isOpponent: boolean;
-  playerName: string;
-  position: 'top' | 'bottom'; // Position is now more specific
 }
 
-const PlayerHandComponent: React.FC<PlayerHandProps> = ({ player, hand, selectedSize, onSelectSize, isCurrentPlayer, isOpponent, playerName, position }) => {
+const PlayerHandComponent: React.FC<PlayerHandProps> = ({ player, hand, selectedSize, onSelectSize, isCurrentPlayer }) => {
   const containerClasses = [
     styles.handContainer,
-    isOpponent ? styles.opponent : styles.player,
     styles[player.toLowerCase()],
-    isCurrentPlayer && !isOpponent ? styles.active : '',
-    styles[position], // Directly use 'top' or 'bottom' class
+    isCurrentPlayer ? styles.active : '',
   ].join(' ');
 
   return (
     <div className={containerClasses}>
-      <h3 className={styles.playerTitle}>{playerName}</h3>
+      <h3 className={styles.playerTitle}>Your Hand</h3>
       <div className={styles.pieces}>
         {SIZES.map(size => (
           <div

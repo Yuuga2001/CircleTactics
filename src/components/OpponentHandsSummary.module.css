@@ -1,0 +1,89 @@
+.summaryContainer {
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  background-color: rgba(0, 0, 0, 0.05);
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+  font-size: 0.8rem;
+}
+
+.gridHeader,
+.gridRow {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  align-items: center;
+  text-align: center;
+  padding: 0.25rem 0;
+}
+
+.gridHeader {
+  font-weight: 700;
+  color: #555;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 0.25rem;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+}
+
+.gridRow {
+  transition: background-color 0.3s;
+  border-radius: 6px;
+}
+
+.gridRow.active {
+  background-color: rgba(255, 193, 7, 0.2);
+  font-weight: 700;
+}
+
+.playerNameCell {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: left;
+  padding-left: 0.5rem;
+  gap: 0.5rem;
+}
+
+.playerColorIndicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1px solid rgba(0,0,0,0.2);
+}
+
+.pieceCell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+}
+
+.pieceIcon {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pieceIconInner {
+   border-radius: 50%;
+}
+
+.pieceIconInner.small { width: 40%; height: 40%; background: white; }
+.pieceIconInner.medium { width: 65%; height: 65%; background: white; }
+.pieceIconInner.large { width: 90%; height: 90%; background: white; }
+
+
+.pieceCount {
+  font-family: monospace;
+  font-size: 0.9rem;
+}
+
+/* Player Colors */
+.blue { background-color: var(--player-blue); border-color: var(--player-blue-dark); }
+.green { background-color: var(--player-green); border-color: var(--player-green-dark); }
+.yellow { background-color: var(--player-yellow); border-color: var(--player-yellow-dark); }
+.red { background-color: var(--player-red); border-color: var(--player-red-dark); }

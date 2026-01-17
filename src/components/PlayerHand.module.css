@@ -14,20 +14,10 @@
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), 0 0 15px var(--highlight-color);
 }
 
-
-.handContainer.red {
-  border-color: var(--player-red-dark);
-}
-.handContainer.blue {
-  border-color: var(--player-blue-dark);
-}
-/* New player colors */
-.handContainer.yellow {
-  border-color: var(--player-yellow-dark);
-}
-.handContainer.green {
-  border-color: var(--player-green-dark);
-}
+.handContainer.red { border-color: var(--player-red-dark); }
+.handContainer.blue { border-color: var(--player-blue-dark); }
+.handContainer.yellow { border-color: var(--player-yellow-dark); }
+.handContainer.green { border-color: var(--player-green-dark); }
 
 .playerTitle {
   margin: 0 0 0.5rem 0;
@@ -39,10 +29,8 @@
 }
 .handContainer.red .playerTitle { color: var(--player-red-dark); }
 .handContainer.blue .playerTitle { color: var(--player-blue-dark); }
-/* New player colors for title */
 .handContainer.yellow .playerTitle { color: var(--player-yellow-dark); }
 .handContainer.green .playerTitle { color: var(--player-green-dark); }
-
 
 .pieces {
   display: flex;
@@ -61,11 +49,10 @@
   transition: all 0.2s ease-in-out;
 }
 
-/* Player (bottom) is interactive */
-.player .pieceSelector:not(.disabled):hover {
+.pieceSelector:not(.disabled):hover {
   background-color: rgba(0, 0, 0, 0.05);
 }
-.player .pieceSelector.selected {
+.pieceSelector.selected {
   border-color: var(--highlight-color);
   background-color: rgba(255, 193, 7, 0.2);
   transform: translateY(-2px);
@@ -79,9 +66,15 @@
 .piecePreview {
   border-radius: 50%;
   margin-bottom: 0.5rem;
+  width: 35px;
+  height: 35px;
 }
 
-/* Preview colors */
+.piecePreview.small { width: 25px; height: 25px; }
+.piecePreview.medium { width: 35px; height: 35px; }
+.piecePreview.large { width: 45px; height: 45px; }
+
+
 .piecePreview.red {
   background-color: var(--player-red);
   border: 2px solid var(--player-red-dark);
@@ -90,7 +83,6 @@
   background-color: var(--player-blue);
   border: 2px solid var(--player-blue-dark);
 }
-/* New player colors for piece preview */
 .piecePreview.yellow {
   background-color: var(--player-yellow);
   border: 2px solid var(--player-yellow-dark);
@@ -101,24 +93,7 @@
 }
 
 .pieceCount {
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 700;
   color: #333;
 }
-
-/* --- Sizes for Player (Bottom) --- */
-.bottom .piecePreview.small { width: 25px; height: 25px; }
-.bottom .piecePreview.medium { width: 35px; height: 35px; }
-.bottom .piecePreview.large { width: 45px; height: 45px; }
-.bottom .pieceCount { font-size: 1rem; }
-
-/* --- Sizes for Opponent (Top) --- */
-.top {
-  padding: 0.5rem;
-  max-width: 350px;
-}
-.top .playerTitle { font-size: 0.8rem; }
-.top .piecePreview.small { width: 15px; height: 15px; }
-.top .piecePreview.medium { width: 22px; height: 22px; }
-.top .piecePreview.large { width: 30px; height: 30px; }
-.top .pieceCount { font-size: 0.8rem; }

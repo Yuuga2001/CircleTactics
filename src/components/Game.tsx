@@ -1,9 +1,10 @@
 import React, { useReducer, useEffect } from 'react';
-import { PieceSize, PLAYERS, Player, AI_PLAYERS } from '../types';
+import { PieceSize, Player, AI_PLAYERS } from '../types';
 import { gameReducer, createInitialGameState } from '../logic/gameReducer';
 import { findBestMove } from '../logic/ai';
 import BoardComponent from './Board';
 import PlayerHandComponent from './PlayerHand';
+import OpponentHandsSummary from './OpponentHandsSummary'; // Import the new component
 import styles from './Game.module.css';
 
 const AI_THINKING_TIME = 1000;
@@ -61,19 +62,7 @@ const GameComponent: React.FC = () => {
       </header>
       
       <div className={styles.opponentHandsContainer}>
-        {AI_PLAYERS.map(player => (
-          <PlayerHandComponent
-            key={player}
-            player={player}
-            hand={hands[player]}
-            selectedSize={null}
-            onSelectSize={() => {}}
-            isCurrentPlayer={currentPlayer === player}
-            isOpponent={true}
-            playerName={getPlayerName(player)}
-            position='top'
-          />
-        ))}
+        <OpponentHandsSummary hands={hands} currentPlayer={currentPlayer} />
       </div>
 
       <main className={styles.mainArea}>
@@ -95,9 +84,6 @@ const GameComponent: React.FC = () => {
         selectedSize={selectedSize}
         onSelectSize={handleSelectSize}
         isCurrentPlayer={currentPlayer === USER_PLAYER}
-        isOpponent={false}
-        playerName={getPlayerName(USER_PLAYER)}
-        position='bottom'
       />
 
       {winner && (
