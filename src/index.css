@@ -8,14 +8,15 @@
   --cell-color: #bcaaa4; /* Mid-tone wood */
   --cell-hover-color: #c9b9b3;
 
-  --player-red: #c62828;
-  --player-red-dark: #8e0000;
-  --player-blue: #1565c0;
-  --player-blue-dark: #003c8f;
-  --player-yellow: #FFEB3B; /* 黄色 */
-  --player-yellow-dark: #FBC02D;
-  --player-green: #4CAF50; /* 緑 */
-  --player-green-dark: #2E7D32;
+  /* New Natural Color Palette */
+  --player-red: #b74d4d;      /* Muted Red / Terracotta */
+  --player-red-dark: #8a2c2c;
+  --player-blue: #5a7d9a;     /* Smoky Blue */
+  --player-blue-dark: #3e5a72;
+  --player-yellow: #c7a003;   /* Mustard Yellow */
+  --player-yellow-dark: #9e7f02;
+  --player-green: #6a994e;    /* Olive Green */
+  --player-green-dark: #4f7a33;
 
   --highlight-color: #ffc107;
 }
